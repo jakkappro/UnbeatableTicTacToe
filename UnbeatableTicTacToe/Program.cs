@@ -6,18 +6,15 @@ namespace UnbeatableTicTacToe
     {
         static void Main(string[] args)
         {
-            Board playingBoard = new Board();
-            Printer printer = new Printer();
+            var playingBoard = new Board();
 
-            string inpt = "";
-
-            bool playing = true;
+            var playing = true;
 
             while (playing)
             {
-                printer.Print(playingBoard);
+                Printer.Print(playingBoard);
 
-                inpt = Console.ReadLine();
+                var inpt = Console.ReadLine();
 
                 playingBoard.Change(inpt);
             }

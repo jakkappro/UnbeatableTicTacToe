@@ -4,63 +4,63 @@ namespace UnbeatableTicTacToe
 {
     public class Board
     {
-        private bool turn = true; //True means X turn, false means O turn
+        public bool XTurn = true;
         
-        private string[, ] board = new string[3, 3];
+        private string[, ] board = new[, ] {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
 
         public string[,] SBoard
         {
-            get
-            {
-                return board;
-            }
-            
+            get => board;
         }
 
         public void Change(string pos)
         {
-            switch (pos)
+            var iRow = 0;
+            var iCollum = 0;
+            
+            //Validate input
+            var upper = pos.ToUpper().ToCharArray();
+            if (upper.Length > 2)
             {
-                case "A0":
-                    board[0, 0] = "X";
-                    break;
-
-                case "A1":
-                    board[0, 1] = "X";
-                    break;
-
-                case "A2":
-                    board[0, 2] = "X";
-                    break;
-                
-                case "B0":
-                    board[1, 0] = "X";
-                    break;
-
-                case "B1":
-                    board[1, 1] = "X";
-                    break;
-
-                case "B2":
-                    board[1, 2] = "X";
-                    break;
-                
-                case "C0":
-                    board[2, 0] = "X";
-                    break;
-
-                case "C1":
-                    board[2, 1] = "X";
-                    break;
-
-                case "C2":
-                    board[2, 2] = "X";
-                    break;
-                
-                default:
-                    Console.WriteLine("Invalid input. Pleas insert input in A0 - C2, with upper case letters");
-                    break;
+                Console.WriteLine("Too long input.");
+                return;
             }
+
+            if (upper[0] < 'A' || upper[0] > 'C')
+            {
+                Console.WriteLine("Pleas input character between A - C.");
+                return;
+            }
+
+            if (upper[1] < '0' || upper[1] > '2')
+            {
+                Console.WriteLine("Pleas input number between 0 - 2");
+                return;
+            }
+
+            //Determinate first index
+            iRow = upper[0] switch
+            {
+                'A' => 0,
+                'B' => 1,
+                'C' => 2,
+                _ => iRow
+            };
+
+            //Determinate second index
+            iCollum = upper[1] switch
+            {
+                '0' => 0,
+                '1' => 1,
+                '2' => 2,
+                _   => iCollum
+            };
+            
+            //Change string
+            board[iRow, iCollum] = XTurn ? "X" : "O";
+            
+            //Change turn
+            XTurn = !XTurn;
         }
     }
 }
