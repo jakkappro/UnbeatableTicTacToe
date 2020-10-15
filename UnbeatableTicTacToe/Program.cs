@@ -8,16 +8,23 @@ namespace UnbeatableTicTacToe
         {
             var playingBoard = new Board();
 
-            var playing = true;
+            string winner;
 
-            while (playing)
+            while (true)
             {
                 Printer.Print(playingBoard);
-
+                
+                winner = GameRules.IsWinner("X", playingBoard) ? "X" : GameRules.IsWinner("Y", playingBoard) ? "Y" : "";
+                
+                if (winner != "")
+                    break;
+                
                 var inpt = Console.ReadLine();
 
                 playingBoard.Change(inpt);
             }
+
+            Console.WriteLine($"Winner is {winner}.");
         }
     }
 }
