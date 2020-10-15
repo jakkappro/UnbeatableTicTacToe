@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace UnbeatableTicTacToe
 {
@@ -23,18 +24,21 @@ namespace UnbeatableTicTacToe
             if (upper.Length > 2)
             {
                 Console.WriteLine("Too long input.");
+                Thread.Sleep(1000);
                 return;
             }
 
             if (upper[0] < 'A' || upper[0] > 'C')
             {
                 Console.WriteLine("Pleas input character between A - C.");
+                Thread.Sleep(1000);
                 return;
             }
 
             if (upper[1] < '0' || upper[1] > '2')
             {
                 Console.WriteLine("Pleas input number between 0 - 2");
+                Thread.Sleep(1000);
                 return;
             }
 
@@ -56,6 +60,14 @@ namespace UnbeatableTicTacToe
                 _   => iCollum
             };
             
+            //Check if space is occupied
+            if (board[iRow, iCollum] != "-")
+            {
+                Console.WriteLine("This space is occupied.");
+                Thread.Sleep(1000);
+                return;
+            }
+
             //Change string
             board[iRow, iCollum] = XTurn ? "X" : "O";
             
