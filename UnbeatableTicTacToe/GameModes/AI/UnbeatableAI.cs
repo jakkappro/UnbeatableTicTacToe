@@ -1,7 +1,10 @@
-﻿namespace UnbeatableTicTacToe
+﻿namespace UnbeatableTicTacToe.GameModes.AI
 {
-    public class UnbeatableAI
+    public static class UnbeatableAI
     {
-        
+        public static void Start()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

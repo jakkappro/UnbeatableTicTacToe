@@ -1,20 +1,14 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace UnbeatableTicTacToe
+namespace UnbeatableTicTacToe.Game
 {
     public class Board
     {
-        public bool XTurn = true;
-        
-        private string[, ] board = new[, ] {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+        public string[,] SBoard { get; private set; } = new[, ] {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
 
-        public string[,] SBoard
-        {
-            get => board;
-        }
-
-        public void Change(string pos)
+        public bool Change(string pos, string who)
         {
             var iRow = 0;
             var iCollum = 0;
@@ -25,21 +19,21 @@ namespace UnbeatableTicTacToe
             {
                 Console.WriteLine("Too long input.");
                 Thread.Sleep(1000);
-                return;
+                return false;
             }
 
             if (upper[0] < 'A' || upper[0] > 'C')
             {
                 Console.WriteLine("Pleas input character between A - C.");
                 Thread.Sleep(1000);
-                return;
+                return false;
             }
 
             if (upper[1] < '0' || upper[1] > '2')
             {
                 Console.WriteLine("Pleas input number between 0 - 2");
                 Thread.Sleep(1000);
-                return;
+                return false;
             }
 
             //Determinate first index
@@ -61,18 +55,16 @@ namespace UnbeatableTicTacToe
             };
             
             //Check if space is occupied
-            if (board[iRow, iCollum] != "-")
+            if (SBoard[iRow, iCollum] != "-")
             {
                 Console.WriteLine("This space is occupied.");
                 Thread.Sleep(1000);
-                return;
+                return false;
             }
 
             //Change string
-            board[iRow, iCollum] = XTurn ? "X" : "O";
-            
-            //Change turn
-            XTurn = !XTurn;
+            SBoard[iRow, iCollum] = who;
+            return true;
         }
     }
 }
