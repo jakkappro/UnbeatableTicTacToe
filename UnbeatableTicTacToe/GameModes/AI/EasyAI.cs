@@ -17,7 +17,6 @@ namespace UnbeatableTicTacToe.GameModes.AI
                 Printer.Print(playingBoard, "X");
                 if (playerTurn)
                 {
-                    Console.WriteLine("Player");
                     var input = Console.ReadLine();
                     playerTurn = !playingBoard.Change(input, "X");
                 }

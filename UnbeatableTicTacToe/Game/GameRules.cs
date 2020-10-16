@@ -31,7 +31,11 @@
                 }
             }
 
-            return true;
+            if (IsWinner("X", board))
+                if(IsWinner("O", board))
+                    return false;
+
+            return !IsWinner("X", board) && !IsWinner("O", board);
         }
     }
 }
