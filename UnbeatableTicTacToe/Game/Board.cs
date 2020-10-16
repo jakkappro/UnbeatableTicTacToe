@@ -6,7 +6,7 @@ namespace UnbeatableTicTacToe.Game
 {
     public class Board
     {
-        public string[,] SBoard { get; private set; } = new[, ] {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+        public string[,] SBoard { get; set; } = new[, ] {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
 
         public bool Change(string pos, string who)
         {
